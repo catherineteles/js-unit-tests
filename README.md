@@ -57,7 +57,7 @@ Nesse projeto, você será capaz de:
 Para entregar o seu projeto você deverá criar um Pull Request neste repositório.
 
 Lembre-se que você pode consultar nosso conteúdo sobre
-[Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
+[Git & GitHub](https://app.betrybe.com/course/calendar/fundamentals) sempre que precisar!
 
 ---
 
@@ -200,7 +200,7 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, basta ir em extens
 
 ### 1. Implemente a função `average`
 
-A função average recebe um array (tamanho variável) e retorna a média dos valores recebidos. Caso a função receba algum valor não númerico ou um array vazio, o valor `undefined` deve ser retornado. Todos os resultados devem ser arredondados para valores inteiros. Ex: 4,6 vira 5; 1,3 vira 1. O arquivo `average.spec.js` contém os testes para `average` já implementados. Implemente a função no arquivo `src/average.js` de forma que ela atenda aos testes propostos.
+A função average recebe um array (tamanho variável) e retorna a média dos valores recebidos. Caso a função receba algum valor não numérico ou um array vazio, o valor `undefined` deve ser retornado. Todos os resultados devem ser arredondados para valores inteiros. Ex: 4,6 vira 5; 1,3 vira 1. O arquivo `average.spec.js` contém os testes para `average` já implementados. Implemente a função no arquivo `src/average.js` de forma que ela atenda aos testes propostos.
 
 **O que será avaliado**
 
