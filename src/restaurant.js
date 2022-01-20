@@ -79,8 +79,31 @@
 // que percorre por todos os itens de `objetoRetornado.consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
-const createMenu = (chosenObject) => ({ consumption: [],
-  fetchMenu: () => chosenObject,
-  order: (request) => createMenu.consumption.push(request) });
+const createMenu = (chosenObject) => {
+  const restaurant = {};
+  let myMenu = Object.assign(restaurant, chosenObject);
+  myMenu.fetchMenu = () => chosenObject;
+  myMenu.consumption = [];
+  myMenu.order = (request) => restaurant.consumption.push(request);
+  return myMenu;
+}; 
+
+const equals = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
+
+const testSix = () => {
+  const objetoRetornado = createMenu({ food: {}, drink: {} });
+  objetoRetornado.order('coxinha');
+  objetoRetornado.order('agua');
+  objetoRetornado.order('sopa');
+  objetoRetornado.order('sashimi');
+
+//https://www.30secondsofcode.org/articles/s/javascript-array-comparison
+
+let arrayDesejado = ['coxinha', 'agua', 'sopa', 'sashimi'];
+let arrayObtido = objetoRetornado.consumption;
+return equals(arrayDesejado, arrayObtido);
+};
+
+console.log(testSix());
 
 module.exports = createMenu;

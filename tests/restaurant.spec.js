@@ -45,6 +45,41 @@ const createMenu = require('../src/restaurant');
 */
 // const objetoRetornado = createMenu(); // Retorno: { fetchMenu: () => {}, ... }
 
+const testFive = () => {
+  const objetoRetornado = createMenu({ food: {}, drink: {} });
+  objetoRetornado.order('coxinha');
+  if (objetoRetornado.consumption.includes('coxinha')) {
+    return true;
+  }
+};
+
+const equals = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
+
+const testSix = () => {
+  const objetoRetornado = createMenu({ food: {}, drink: {} });
+  objetoRetornado.order('coxinha');
+  objetoRetornado.order('agua');
+  objetoRetornado.order('sopa');
+  objetoRetornado.order('sashimi');
+
+//https://www.30secondsofcode.org/articles/s/javascript-array-comparison
+
+let arrayDesejado = ['coxinha', 'agua', 'sopa', 'sashimi'];
+let arrayObtido = objetoRetornado.consumption;
+return equals(arrayDesejado, arrayObtido);
+};
+
+const testSeven = () => {
+  const objetoRetornado = createMenu({ food: {}, drink: {} });
+  objetoRetornado.order('coxinha');
+  objetoRetornado.order('agua');
+  objetoRetornado.order('coxinha');
+
+let arrayDesejado = ['coxinha', 'agua', 'coxinha'];
+let arrayObtido = objetoRetornado.consumption;
+return equals(arrayDesejado, arrayObtido);
+};
+
 
 describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
   it('Verifica se a função `createMenu` tem o comportamento esperado', () => {
@@ -77,7 +112,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // TESTE 5: Verifique se, ao chamar uma função associada à chave `order` no objeto retornado,
     // passando uma string como parâmetro (como `objetoRetornado.order('coxinha')`), tal string é adicionada
     // ao array retornado em `objetoRetornado.consumption`.
-    // ```
+    expect(testFive()).toBe(true);
     // const objetoRetornado = createMenu(objetoQualquer);
     // objetoRetornado.order("coxinha");
     // objetoRetornado.consumption // Retorno: ["coxinha"]
@@ -85,17 +120,16 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // Agora faça o PASSO 3 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
     // TESTE 6: Verifique se, ao adicionar três pedidos, dentre bebidas e comidas, o array `objetoRetornado.consumption` contém os itens pedidos.
-    // ```
+    expect(testSix()).toBe(true);
     // objetoRetornado.order("coxinha");
     // objetoRetornado.order("agua");
     // objetoRetornado.order("sopa");
     // objetoRetornado.order("sashimi");
     // objetoRetornado.consumption // Retorno: ["coxinha", "agua", "sopa", "sashimi"]
-    // ```
     // Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
     // TESTE 7: Verifique se a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.
-    // ```
+    expect(testSeven()).toBe(true);
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
