@@ -84,26 +84,24 @@ const createMenu = (chosenObject) => {
   let myMenu = Object.assign(restaurant, chosenObject);
   myMenu.fetchMenu = () => chosenObject;
   myMenu.consumption = [];
-  myMenu.order = (request) => restaurant.consumption.push(request);
+  myMenu.order = (request) => myMenu.consumption.push(request);
+  myMenu.pay = () => {
+    let valorAPagar = 0;
+    let foodObject = myMenu.food;
+    let drinkObject = myMenu.drinks;
+    myMenu.consumption.forEach((element) => {
+      if (foodObject[element]) {
+        valorAPagar += parseFloat(foodObject[element]);
+      }
+    });
+    myMenu.consumption.forEach((element) => {
+      if (drinkObject[element]) {
+        valorAPagar += parseFloat(drinkObject[element], 10);
+      }
+    });
+    return (valorAPagar * 1.1).toPrecision(4);
+  };
   return myMenu;
 }; 
-
-const equals = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
-
-const testSix = () => {
-  const objetoRetornado = createMenu({ food: {}, drink: {} });
-  objetoRetornado.order('coxinha');
-  objetoRetornado.order('agua');
-  objetoRetornado.order('sopa');
-  objetoRetornado.order('sashimi');
-
-//https://www.30secondsofcode.org/articles/s/javascript-array-comparison
-
-let arrayDesejado = ['coxinha', 'agua', 'sopa', 'sashimi'];
-let arrayObtido = objetoRetornado.consumption;
-return equals(arrayDesejado, arrayObtido);
-};
-
-console.log(testSix());
 
 module.exports = createMenu;

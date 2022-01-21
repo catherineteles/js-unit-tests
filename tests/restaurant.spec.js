@@ -80,6 +80,19 @@ let arrayObtido = objetoRetornado.consumption;
 return equals(arrayDesejado, arrayObtido);
 };
 
+const payInfo = () => {
+  const meuRestaurante = createMenu({
+    food: {'coxinha': 3.90, 'sanduiche': 9.90},
+    drinks: {'agua': 3.90, 'cerveja': 6.90}
+  });
+  meuRestaurante.order('coxinha');
+  meuRestaurante.order('agua');
+  meuRestaurante.order('coxinha');
+  if (meuRestaurante.pay() === '12.87') {
+    return true;
+  }
+};
+
 
 describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
   it('Verifica se a função `createMenu` tem o comportamento esperado', () => {
@@ -138,7 +151,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
     // TESTE 8: Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
-    // ```
+    expect(payInfo()).toBe(true);
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
